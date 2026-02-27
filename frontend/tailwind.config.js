@@ -8,25 +8,35 @@ export default {
         extend: {
             colors: {
                 bg: {
-                    primary: '#0F0C29',
-                    secondary: '#302B63',
-                    tertiary: '#24243E',
+                    primary: '#0A0A0F',
+                    secondary: '#111118',
+                    tertiary: '#18181F',
+                    elevated: '#1E1E28',
                 },
                 accent: {
-                    primary: '#00D2FF',
-                    secondary: '#9D50BB',
+                    primary: '#4F8EF7',
+                    secondary: '#A78BFA',
+                },
+                border: {
+                    subtle: 'rgba(255,255,255,0.06)',
+                    default: 'rgba(255,255,255,0.1)',
+                    focus: 'rgba(79,142,247,0.5)',
                 },
                 text: {
-                    primary: '#FFFFFF',
-                    secondary: '#B0B0B0',
+                    primary: '#F0F0F5',
+                    secondary: '#7A7A8C',
+                    muted: '#4A4A5A',
                 },
             },
-            backgroundImage: {
-                'neon-gradient': 'linear-gradient(135deg, #0F0C29, #302B63, #24243E)',
-            },
             boxShadow: {
-                'neon': '0 0 10px rgba(0, 210, 255, 0.5)',
-                'neon-purple': '0 0 15px rgba(157, 80, 187, 0.4)',
+                'neon': '0 0 16px rgba(79, 142, 247, 0.35)',
+                'neon-purple': '0 0 16px rgba(167, 139, 250, 0.3)',
+                'card': '0 4px 24px rgba(0,0,0,0.4)',
+                'inset-top': 'inset 0 1px 0 rgba(255,255,255,0.06)',
+            },
+            fontFamily: {
+                sans: ['Inter', 'system-ui', 'sans-serif'],
+                mono: ['JetBrains Mono', 'monospace'],
             },
         },
     },

@@ -4,64 +4,95 @@ import NeonButton from '../ui/NeonButton'
 import { useGame } from '../../contexts/GameContext'
 
 const ServerList: React.FC = () => {
-    const { rooms } = useGame();
-    const [searchQuery, setSearchQuery] = React.useState('');
+    const { rooms } = useGame()
+    const [searchQuery, setSearchQuery] = React.useState('')
 
-    const serverList = Object.values(rooms).filter(room =>
-        (room.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
-        room.id.toString().includes(searchQuery)
-    );
+    const serverList = Object.values(rooms).filter(
+        (room) =>
+            (room.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+            room.id.toString().includes(searchQuery)
+    )
 
     return (
         <GlassPanel title="Room List" accentColor="primary" className="h-full">
-            <div className="mb-4 flex gap-2">
+            {/* Search bar */}
+            <div className="flex gap-2">
                 <div className="relative flex-grow">
+                    <svg
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted pointer-events-none"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                    </svg>
                     <input
                         type="text"
-                        placeholder="Search for a room..."
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-accent-primary/50 transition-colors"
+                        placeholder="Search rooms..."
+                        className="w-full bg-bg-elevated border border-border-subtle rounded-lg pl-9 pr-4 py-2 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent-primary/40 transition-colors"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <div className="absolute right-3 top-2.5 text-text-secondary/50">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
                 </div>
-                <NeonButton size="sm" variant="secondary">Refresh</NeonButton>
+                <NeonButton size="sm" variant="ghost">Refresh</NeonButton>
             </div>
 
-            <div className="flex flex-col gap-2 overflow-y-auto max-h-[250px] pr-2 custom-scrollbar">
+            {/* Room rows */}
+            <div className="flex flex-col gap-1 overflow-y-auto max-h-[240px] custom-scrollbar -mx-1 px-1">
                 {serverList.length === 0 ? (
-                    <div className="text-center py-8 text-text-secondary italic">No active rooms found.</div>
+                    <div className="text-center py-10 text-text-muted text-sm">
+                        No active rooms found.
+                    </div>
                 ) : (
                     serverList.map((room) => (
                         <div
                             key={room.id}
-                            className="flex items-center gap-4 p-3 rounded-lg border border-white/5 bg-white/5 hover:bg-white/10 hover:border-accent-primary/30 transition-all cursor-pointer group"
+                            className="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-bg-elevated border border-transparent hover:border-border-subtle transition-all cursor-pointer group"
                         >
-                            <div className={`w-3 h-3 rounded-full shrink-0 ${room.gaming ? 'bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.5)]' : 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]'
-                                }`}></div>
+                            {/* Status dot */}
+                            <span
+                                className={
+                                    room.gaming
+                                        ? 'status-dot-playing shrink-0'
+                                        : 'status-dot-online shrink-0'
+                                }
+                            />
 
-                            <div className="flex-grow">
-                                <div className="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">{room.title || `Room ${room.id}`}</div>
-                                <div className="text-[10px] text-text-secondary uppercase tracking-wider font-mono">Mode: {room.mode}</div>
+                            {/* Room info */}
+                            <div className="flex-grow min-w-0">
+                                <div className="text-sm font-semibold text-text-primary truncate group-hover:text-accent-primary transition-colors">
+                                    {room.title || `Room ${room.id}`}
+                                </div>
+                                <div className="text-[10px] text-text-muted font-mono uppercase tracking-wider">
+                                    Mode {room.mode} · {room.gaming ? 'In game' : 'Waiting'}
+                                </div>
                             </div>
 
-                            <div className="flex flex-col items-end gap-1 shrink-0">
-                                <div className="text-xs font-mono text-text-secondary">
-                                    <span className="text-accent-primary font-bold">{room.players.length}</span> / {room.limit}
-                                </div>
-                                <div className="w-20 h-1 bg-white/10 rounded-full overflow-hidden">
+                            {/* Player count + bar */}
+                            <div className="flex flex-col items-end gap-1.5 shrink-0">
+                                <span className="text-[11px] font-mono text-text-secondary">
+                                    <span className="text-accent-primary font-bold">{room.players.length}</span>
+                                    /{room.limit}
+                                </span>
+                                <div className="w-16 h-0.5 bg-bg-elevated rounded-full overflow-hidden">
                                     <div
-                                        className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary"
+                                        className="h-full bg-accent-primary rounded-full"
                                         style={{ width: `${(room.players.length / room.limit) * 100}%` }}
-                                    ></div>
+                                    />
                                 </div>
                             </div>
 
-                            <NeonButton size="sm" className="hidden group-hover:flex">Enter</NeonButton>
+                            {/* Enter button */}
+                            <div className="w-0 overflow-hidden group-hover:w-auto group-hover:ml-1 transition-all duration-200">
+                                <NeonButton size="sm" variant="primary" className="whitespace-nowrap">
+                                    Enter
+                                </NeonButton>
+                            </div>
                         </div>
                     ))
                 )}

@@ -1,42 +1,55 @@
 /**
- * Rule the words! KKuTu Online
- * Copyright (C) 2017 JJoriping(op@jjo.kr)
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Neon Night Login Theme
  */
 
-body{
-	background-color: #232323;
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	margin: 0;
 }
-button{
-	border: none;
-	margin: 8px auto;
-	width: 200px;
-	height: 30px;
-	cursor: pointer;
-	box-shadow: 0px 2px 2px #141414;
+
+.login-with {
+	background: var(--glass-bg);
+	backdrop-filter: blur(20px);
+	border: 1px solid var(--glass-border);
+	padding: 40px;
+	border-radius: 20px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+	max-width: 400px;
+	width: 100%;
 }
-#with-google span{ display: block; }
-.login-with{
-	padding-top: 30px;
-	margin: 30px 0px;
-	text-align: center;
+
+button {
+	width: 100% !important;
+	height: 50px !important;
+	margin: 15px 0 !important;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	font-size: 16px !important;
 }
-.login-legal{
-	padding-top: 50px;
-	color: #BBBBBB;
-	font-size: 11px;
-	text-align: center;
+
+#with-google {
+	background: #ea4335 !important;
+	color: white !important;
+	border: none !important;
 }
-.login-legal a{ color: #DDDDDD; }
+
+#with-google:hover {
+	background: #d33828 !important;
+	box-shadow: 0 0 15px rgba(234, 67, 53, 0.4);
+}
+
+.login-legal {
+	margin-top: 30px;
+	color: var(--text-secondary);
+	font-size: 12px;
+}
+
+.login-legal a {
+	color: var(--accent-primary);
+	text-decoration: underline;
+}

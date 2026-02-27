@@ -16,82 +16,154 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#holder{
-	width: 200px;
-	text-align: center;
-	text-shadow: 0px 0px 4px #333;
-	font-weight: bold;
-}
-#logo{
-	margin-top: -20px;
-}
-#kkutu-bulletin{
-	border: 0px;
-	margin-bottom: 5px;
+#Middle {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px 20px;
+	gap: 30px;
+	width: auto;
 }
 
-#menu-bar a{
-	display: block;
-	float: left;
-	padding: 10px 5px;
-	border-radius: 5px;
-	margin: 0px 3px;
-	width: 120px;
-	font-size: 15px;
-	text-align: center;
-	box-shadow: 0px 1px 1px #333;
-}
-
-#game-start{
-	float: left;
-	width: 315px;
-	height: 70px;
-	font-size: 20px;
-	font-weight: bold;
-	border: none;
-	border-bottom-left-radius: inherit;
-	border-bottom-right-radius: inherit;
-}
-	#game-start:hover{ font-size: 24px; background-color: rgba(0, 0, 0, 0.5); }
-.server-list-box{
-	float: right;
-	width: 320px;
-	background-color: rgba(0, 0, 0, 0.4);
-}
-.server-list-title{
-	padding: 2px 0px;
+#holder {
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.4);
+	max-width: 800px;
+	text-align: center;
 }
-#server-refresh{
-	margin: 0px 5px;
-	cursor: pointer;
-}
-.server{
-	float: left;
-	margin: 2px 0px;
-	width: 320px;
-	height: 16px;
-	font-size: 13px;
-	cursor: pointer;
-}
-	.server>div{ float: left; }
-	.server-status{ border-radius: 6px; margin: 2px; width: 12px; height: 12px; }
-		.ss-o{ background-color: #3E3; }
-		.ss-p{ background-color: #EE3; }
-		.ss-q{ background-color: #F55; }
-		.ss-x{ background-color: #777; }
-	.server-name{ width: 60px; }
-	.server-people{ width: 190px; height: 100%; }
-		.server-people>.graph-bar{ background-image: url(/img/blue_gauge.png); }
-		.server-people>label{ position: relative; display: block; top: -14px; width: 100%; text-align: center; font-size: 11px; }
-	.server-enter{ width: 50px; text-align: center; }
-	.server:hover{ background-color: rgba(255, 255, 255, 0.1); }
 
-#Background{
-	animation: BGScroll 4s linear infinite;
+#logo {
+	max-width: 300px;
+	filter: drop-shadow(0 0 10px var(--accent-primary));
 }
-@keyframes BGScroll{
-	from{ background-position: 0px 0px; }
-	to{ background-position: -200px -200px; }
+
+#menu-bar {
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin: 20px 0;
+}
+
+#menu-bar a {
+	padding: 15px 25px;
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius);
+	font-weight: 600;
+	transition: var(--transition);
+	backdrop-filter: blur(10px);
+}
+
+#menu-bar a:hover {
+	transform: translateY(-5px);
+	border-color: var(--accent-primary);
+	box-shadow: var(--neon-glow);
+}
+
+.server-list-box {
+	width: 100%;
+	max-width: 900px;
+	padding: 20px;
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--border-radius);
+	backdrop-filter: blur(20px);
+}
+
+.server-list-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid var(--glass-border);
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.server {
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	margin-bottom: 10px;
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid transparent;
+	border-radius: var(--border-radius);
+	transition: var(--transition);
+	height: auto;
+}
+
+.server:hover {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: var(--accent-primary);
+	transform: translateX(5px);
+}
+
+.server-status {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-right: 15px;
+	flex-shrink: 0;
+}
+
+.ss-o {
+	background: #00FF88;
+	box-shadow: 0 0 10px #00FF88;
+}
+
+.ss-p {
+	background: #FFCC00;
+	box-shadow: 0 0 10px #FFCC00;
+}
+
+.ss-q {
+	background: #FF4444;
+	box-shadow: 0 0 10px #FF4444;
+}
+
+.ss-x {
+	background: #777777;
+}
+
+.server-name {
+	font-weight: 700;
+	width: 120px;
+	font-family: 'Outfit', sans-serif;
+}
+
+.server-people {
+	flex-grow: 1;
+	height: 20px;
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	margin: 0 20px;
+}
+
+.server-people .graph-bar {
+	height: 100%;
+	background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+	transition: width 0.5s ease;
+}
+
+.server-people label {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	line-height: 20px;
+	font-size: 11px;
+	font-weight: 700;
+	color: #FFF;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.server-enter {
+	padding: 8px 15px;
+	background: var(--accent-primary);
+	color: var(--bg-primary);
+	border-radius: 20px;
+	font-weight: 800;
+	font-size: 12px;
+	text-transform: uppercase;
 }

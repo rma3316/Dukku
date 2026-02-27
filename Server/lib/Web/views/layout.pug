@@ -42,12 +42,15 @@ html
 			meta(property='og:title', content=locals.ogTitle || "쪼롤 - League of Legends 정보 검색 사이트")
 			meta(property='og:description', content=locals.ogDescription || "롤 전적검색은 JJO.KR")
 
+		link(rel='preconnect' href='https://fonts.googleapis.com')
+		link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
+		link(href='https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&display=swap' rel='stylesheet')
 		+PageHead()
 			block Preload
 		block CSS
 		block JS
 
-	body(style='min-width: 640px;')
+	body
 		div#Top
 			+Menu()
 			div#global-notice

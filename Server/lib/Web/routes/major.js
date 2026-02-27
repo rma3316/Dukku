@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Web		 = require("request");
+var Web		 = require("axios");
 var MainDB	 = require("../db");
 var JLog	 = require("../../sub/jjlog");
 var Const	 = require("../../const");
@@ -100,12 +100,13 @@ Server.get("/injeong/:word", function(req, res){
 				if($ij.theme == '~') return res.send({ error: 406 });
 				else return res.send({ error: 403 });
 			}
-			Web.get("https://namu.moe/w/" + encodeURI(word), function(err, _res){
-				if(err) return res.send({ error: 400 });
-				else if(_res.statusCode != 200) return res.send({ error: 405 });
+			Web.get("https://namu.moe/w/" + encodeURI(word)).then(function(_res){
 				MainDB.kkutu_injeong.insert([ '_id', word ], [ 'theme', theme ], [ 'createdAt', now ], [ 'writer', req.session.profile.id ]).on(function($res){
 					res.send({ message: "OK" });
 				});
+			}).catch(function(err){
+				if(err.response && err.response.status != 200) return res.send({ error: 405 });
+				res.send({ error: 400 });
 			});
 		});
 	});

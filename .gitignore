@@ -1,9 +1,36 @@
-Client/node_modules
-Server/run.bat
-Server/node_modules
-Server/lib/node_modules
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build results
 Server/lib/Web/public/js/**
 !Server/lib/Web/public/js/jquery.js
-Server/lib/sub/auth.json
+dist/
+build/
+
+# Config files (Sensitive)
 Server/lib/sub/global.json
-.vscode
+Server/lib/sub/auth.json
+*.env
+*.inc.json
+
+# Logs
+*.log
+KKUTU_ERROR.log
+
+# OS & Editors
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+pub.txt
+Works.txt
+vulnerability.md
+
+# Database
+db.sql

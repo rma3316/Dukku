@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0F0C29;
+  --bg-secondary: #302B63;
+  --bg-tertiary: #24243E;
+  --accent-primary: #00D2FF;
+  --accent-secondary: #9D50BB;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary min-h-screen font-sans;
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary));
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[rgba(255, 255, 255, 0.05)] backdrop-blur-xl border border-[rgba(255, 255, 255, 0.1)] rounded-xl shadow-2xl;
+  }
+
+  .neon-button {
+    @apply px-6 py-2 rounded-lg font-semibold transition-all duration-300 bg-accent-primary/10 border border-accent-primary/30 text-accent-primary hover:bg-accent-primary/20 hover:border-accent-primary hover:shadow-neon active:scale-95;
+  }
+
+  .neon-button-purple {
+    @apply px-6 py-2 rounded-lg font-semibold transition-all duration-300 bg-accent-secondary/10 border border-accent-secondary/30 text-accent-secondary hover:bg-accent-secondary/20 hover:border-accent-secondary hover:shadow-neon-purple active:scale-95;
+  }
+}

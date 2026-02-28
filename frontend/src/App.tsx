@@ -44,16 +44,14 @@ function App() {
 
       {/* Top Navigation */}
       <nav className="w-full max-w-6xl mb-8 flex justify-between items-center glass-card px-6 py-4 bg-white/5 border-white/10">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-accent-primary/20 rounded-xl flex items-center justify-center border border-accent-primary/30">
-            <span className="text-accent-primary font-black text-xl">K</span>
-          </div>
-          <h1 className="text-2xl font-black text-white tracking-tighter">
-            KKUTU <span className="text-accent-primary">ONLINE</span>
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-accent-primary rounded-lg flex items-center justify-center font-bold text-white shadow-neon">D</div>
+          <h1 className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-linear-to-r from-accent-primary to-accent-secondary">
+            Dukku
           </h1>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <div className="hidden md:flex items-center gap-6 mr-6 text-sm font-bold text-text-secondary">
             <a href="#" className="hover:text-accent-primary transition-colors">Notice</a>
             <a href="#" className="hover:text-accent-primary transition-colors">Ranking</a>
@@ -109,7 +107,7 @@ function App() {
         {/* Right Sidebar - Chat & Social */}
         <div className="lg:col-span-3 flex flex-col gap-6">
           <LobbyChat />
-          <div className="glass-card p-6 bg-white/5 border-white/10 flex-grow">
+          <div className="glass-card p-6 bg-white/5 border-white/10 grow">
             <h3 className="text-xs font-bold text-accent-primary uppercase tracking-[0.2em] mb-4">Notices</h3>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-1 border-l-2 border-accent-primary/30 pl-3">
@@ -125,9 +123,16 @@ function App() {
         </div>
       </main>
 
-      <footer className="w-full max-w-6xl mt-12 py-8 border-t border-white/5 text-center">
-        <p className="text-text-secondary/30 text-[10px] font-mono tracking-widest uppercase">
-          Rule the words • KKuTu Master v1.0.0-react-alpha • Powered by Antigravity
+      <footer className="w-full max-w-6xl mt-12 py-8 border-t border-white/5 flex flex-col items-center gap-4">
+        <div className="text-xs text-text-secondary text-center">
+          <p>© 2026 dasory. All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-2 text-[10px] uppercase tracking-widest font-bold">
+            <a href="#" className="hover:text-accent-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-accent-primary transition-colors">Terms of Service</a>
+          </div>
+        </div>
+        <p className="text-text-secondary/20 text-[9px] font-mono tracking-widest uppercase">
+          Dukku Master v1.0.0-react-alpha
         </p>
       </footer>
     </div>

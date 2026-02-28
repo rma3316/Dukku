@@ -9,7 +9,8 @@ interface GameContextType extends GameState {
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { isConnected, lastEvent, sendEvent } = useWebSocket(`ws://${window.location.host}/socket`); // Updated for Vite proxy
+    const [sessionId, setSessionId] = useState<string | null>(null);
+    const { isConnected, lastEvent, sendEvent } = useWebSocket(`ws://${window.location.host}/socket`, sessionId);
 
     const [state, setState] = useState<GameState>({
         myId: null,
@@ -18,6 +19,21 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         currentRoomId: null,
         isConnected,
     });
+
+    // Fetch session on mount
+    useEffect(() => {
+        fetch('/api/session')
+            .then(res => res.json())
+            .then(data => {
+                if (data.id) {
+                    setSessionId(data.id);
+                    if (data.profile) {
+                        setState(s => ({ ...s, myId: data.profile.id }));
+                    }
+                }
+            })
+            .catch(err => console.error('Failed to fetch session:', err));
+    }, []);
 
     useEffect(() => {
         setState(s => ({ ...s, isConnected }));

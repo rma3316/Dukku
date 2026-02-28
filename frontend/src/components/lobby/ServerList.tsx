@@ -15,7 +15,7 @@ const ServerList: React.FC = () => {
     return (
         <GlassPanel title="Room List" accentColor="primary" className="h-full">
             <div className="mb-4 flex gap-2">
-                <div className="relative flex-grow">
+                <div className="relative grow">
                     <input
                         type="text"
                         placeholder="Search for a room..."
@@ -44,7 +44,7 @@ const ServerList: React.FC = () => {
                             <div className={`w-3 h-3 rounded-full shrink-0 ${room.gaming ? 'bg-orange-400 shadow-[0_0_8px_rgba(251,146,60,0.5)]' : 'bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]'
                                 }`}></div>
 
-                            <div className="flex-grow">
+                            <div className="grow">
                                 <div className="text-sm font-bold text-white group-hover:text-accent-primary transition-colors">{room.title || `Room ${room.id}`}</div>
                                 <div className="text-[10px] text-text-secondary uppercase tracking-wider font-mono">Mode: {room.mode}</div>
                             </div>
@@ -55,7 +55,7 @@ const ServerList: React.FC = () => {
                                 </div>
                                 <div className="w-20 h-1 bg-white/10 rounded-full overflow-hidden">
                                     <div
-                                        className="h-full bg-gradient-to-r from-accent-primary to-accent-secondary"
+                                        className="h-full bg-linear-to-r from-accent-primary to-accent-secondary"
                                         style={{ width: `${(room.players.length / room.limit) * 100}%` }}
                                     ></div>
                                 </div>

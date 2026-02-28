@@ -5,13 +5,15 @@ export type GameEvent = {
     [key: string]: any;
 };
 
-export const useWebSocket = (url: string) => {
+export const useWebSocket = (baseUrl: string, sessionId?: string | null) => {
     const [socket, setSocket] = useState<WebSocket | null>(null);
     const [lastEvent, setLastEvent] = useState<GameEvent | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const reconnectTimeoutRef = useRef<number | undefined>(undefined);
 
     const connect = useCallback(() => {
+        if (!sessionId) return;
+        const url = `${baseUrl}/${sessionId}`;
         const ws = new WebSocket(url);
 
         ws.onopen = () => {
@@ -42,7 +44,7 @@ export const useWebSocket = (url: string) => {
             console.error('WebSocket error:', error);
             ws.close();
         };
-    }, [url]);
+    }, [baseUrl, sessionId]);
 
     useEffect(() => {
         connect();
